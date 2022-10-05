@@ -5,12 +5,19 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th><th>Name</th><th>Price</th>
+            <th>Id</th><th>Name</th><th>Price</th><th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let p of products">
-            <td>{{p.id}}</td><td>{{p.name}}</td><td>{{p.price}}</td>
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>
+              <button (click)="handleDeleteProduct(p)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
           </tr>
 
         </tbody>
