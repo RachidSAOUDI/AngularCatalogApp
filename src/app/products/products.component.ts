@@ -29,9 +29,12 @@ export class ProductsComponent implements OnInit {
   }
 
   handleDeleteProduct(p: Product) {
+    let conf=confirm("Are you sure?");
+    if(conf==false) return;
     this.productService.deleteProduct(p.id).subscribe({
       next : (data)=>{
-        this.handleGetAllProducts();
+        let index = this.products.indexOf(p);
+        this.products.splice(index, 1);
       }
     })
   }
