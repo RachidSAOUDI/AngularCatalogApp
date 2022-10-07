@@ -8,11 +8,19 @@ import {ProductService} from "../services/product.service";
 })
 export class ProductsComponent implements OnInit {
   products! : Array<any>;
+  errorMessage! : string;
 
   constructor(private productService : ProductService) { }
 
   ngOnInit(): void {
-    this.products=this.productService.getAllProducts();
+    this.productService.getAllProducts().subscribe({
+      next : (data)=>{
+        this.products=data;
+      },
+      error : (err)=>{
+        this.errorMessage=err;
+      }
+    });
   }
 
   handleDeleteProduct(p: any) {
