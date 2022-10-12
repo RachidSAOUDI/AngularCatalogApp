@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of, throwError} from "rxjs";
-import {Product} from "../model/product.model";
+import {PageProduct, Product} from "../model/product.model";
 import {UUID} from "angular2-uuid";
 
 @Injectable({
@@ -28,6 +28,15 @@ export class ProductService {
     if(rnd<0.5) return throwError(()=>new Error("Internet connexion error"));
     else
       return of(this.products);
+  }
+
+  public getPageProducts(page : number, size : number) : Observable<PageProduct>{
+    let index = page*size;
+    let totalPages = ~~(this.products.length/size); //division entiere
+    if(this.products.length % size != 0)
+      totalPages++;
+    let pageProducts = this.products.slice(index, index+size);
+    return of({page:page, size:size, totalPages:totalPages, Products:pageProducts});
   }
 
   public deleteProduct(id : string) : Observable<boolean>{
