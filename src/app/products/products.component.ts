@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   totalPages : number = 0;
   errorMessage! : string;
   searchFormGroup! : FormGroup;
+  currentAction : string = "all";
 
   constructor(private productService : ProductService, private fb : FormBuilder) { }
 
@@ -74,16 +75,22 @@ export class ProductsComponent implements OnInit {
   }
 
   handleSearchProducts() {
+    this.currentAction = "search";
+    this.currentPage=0;
     let keyword = this.searchFormGroup.value.keyword;
-    this.productService.searchProducts(keyword).subscribe({
+    this.productService.searchProducts(keyword, this.currentPage, this.pageSize).subscribe({
       next : (data) => {
-        this.products=data;
+        this.products = data.Products;
+        this.totalPages = data.totalPages;
       }
     });
   }
 
   gotoPage(i: number) {
     this.currentPage=i;
-    this.handleGetPageProducts();
+    if (this.currentAction=="all")
+      this.handleGetPageProducts();
+    else
+      this.handleSearchProducts();
   }
 }
