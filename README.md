@@ -34,4 +34,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### -----------------
 ## Install UUID
 
-Run : npm install angular2-uuid --save
+Run : `npm install angular2-uuid --save`
+
+## Generate admin template
+
+Run : `ng g c admin-template`

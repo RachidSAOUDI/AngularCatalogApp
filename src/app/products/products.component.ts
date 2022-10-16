@@ -76,7 +76,6 @@ export class ProductsComponent implements OnInit {
 
   handleSearchProducts() {
     this.currentAction = "search";
-    this.currentPage=0;
     let keyword = this.searchFormGroup.value.keyword;
     this.productService.searchProducts(keyword, this.currentPage, this.pageSize).subscribe({
       next : (data) => {
@@ -88,7 +87,7 @@ export class ProductsComponent implements OnInit {
 
   gotoPage(i: number) {
     this.currentPage=i;
-    if (this.currentAction=="all")
+    if (this.currentAction==="all")
       this.handleGetPageProducts();
     else
       this.handleSearchProducts();
