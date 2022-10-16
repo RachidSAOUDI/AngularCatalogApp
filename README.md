@@ -39,3 +39,7 @@ Run : `npm install angular2-uuid --save`
 ## Generate admin template
 
 Run : `ng g c admin-template`
+
+## Generate Guards 
+
+Run : `ng g g guards/authentication`
