@@ -61,4 +61,10 @@ export class ProductService {
     let pageProducts = result.slice(index, index+size);
     return of({page:page, size:size, totalPages:totalPages, Products:pageProducts});
   }
+
+  public addNewProduct(product : Product) : Observable<Product>{
+   product.id = UUID.UUID();
+   this.products.push(product);
+   return of(product);
+  }
 }
