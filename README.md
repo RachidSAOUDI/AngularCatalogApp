@@ -43,3 +43,11 @@ Run : `ng g c admin-template`
 ## Generate Guards 
 
 Run : `ng g g guards/authentication`
+
+## Generate new-product
+
+Run : `ng g c new-product`
+
+## Generate edit-product
+
+Run : `ng g c edit-product`
